@@ -25,6 +25,7 @@ function updatePostEvent(targetURL) {
     $.ajax({
         url: targetURL,
         type: "POST",
+        contentType: "text/plain",
         data: $("#nonce").val(),
         success: function(result){
             console.log(result);
@@ -62,6 +63,7 @@ function checkReceivedMessages(){
         url: "/api/retrieve",
         type: "GET",
         dataType:"json",
+        async: true,
         success: function (result) {
             if(result["valid"]){
                 console.log(result);
