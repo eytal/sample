@@ -1,12 +1,13 @@
-# A container can always discover other containers on the samestack using
-# just the container name as the hostname
 
 # INSTRUCTIONS:
 # >>> docker-compose up
-# After all services are done building, access https://localhost:9090/
-# If you get SSL Certificate errors, install the SSL cert obtained from the browser in Trusted Root Authorities
 
-# Separate configuration for each service can be found in the Dockerfile present in each service directory
+# After all services are done building, access the following,
+# Server A: https://localhost:8001/
+# Server B: https://localhost:8002/
+# Server C: https://localhost:8003/ 
+
+# To configure builds, see Dockerfile
 
 version: "3.7"
 
