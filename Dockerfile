@@ -4,7 +4,7 @@
 # https://hub.docker.com/_/tomcat
 #
 
-FROM tomcat:9
+FROM tomcat:9.0.26-jdk8-openjdk-slim
 
 # Copy additional settings to tomcat
 #COPY ./setenv.sh /usr/local/tomcat/bin/
