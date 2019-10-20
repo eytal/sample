@@ -22,11 +22,17 @@ $(document).ready(function () {
 function updatePostEvent(targetURL) {
 
     $("#js_post").html('<div class="spinner-border text-light"></div>');
+    var post_data =  {
+        "origin": window.location.protocol + "//" + window.location.host,
+        "destination":targetURL,
+        "nonce":"" + $("#nonce").val()
+    };
+
     $.ajax({
         url: targetURL,
         type: "POST",
-        contentType: "text/plain",
-        data: $("#nonce").val(),
+        contentType: "application/json",
+        data: JSON.stringify(post_data),
         success: function(result){
             console.log(result);
             updateHttpEvent("success", targetURL, result);

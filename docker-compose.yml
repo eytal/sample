@@ -9,7 +9,7 @@
 
 # To configure builds, see Dockerfile
 
-version: "3.7"
+version: "3.5"
 
 services:
   alpha:

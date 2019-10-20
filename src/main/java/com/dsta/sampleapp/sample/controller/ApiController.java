@@ -47,18 +47,18 @@ public class ApiController {
     }
     @CrossOrigin
     @PostMapping(value="/api/post")
-    ResponseEntity<String> returnNonce(@RequestBody String nonce, HttpServletRequest request){
+    ResponseEntity<String> returnNonce(@RequestBody Message received, HttpServletRequest request){
 
-        Message received = new Message();
+        //Message received = new Message();
 
-        received.setOrigin(request.getHeader("origin"));
-        received.setDestination(request.getRequestURI());
-        received.setNonce(nonce);
+        //received.setOrigin(request.getHeader("origin"));
+        //received.setDestination(request.getRequestURI());
+        //received.setNonce(nonce);
         System.out.println(received.toString());
 
         messageService.save(received);
 
-        return new ResponseEntity<>(nonce,HttpStatus.OK);
+        return new ResponseEntity<>(received.getNonce(),HttpStatus.OK);
     }
 
     @GetMapping(value="/api/retrieve")

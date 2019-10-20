@@ -11,8 +11,8 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String origin;
-    private String destination;
-    private String nonce;
+    public String origin;
+    public String destination;
+    public String nonce;
     private Boolean valid = true;
 }
