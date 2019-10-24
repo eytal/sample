@@ -29,7 +29,7 @@ function updatePostEvent(targetURL) {
     };
 
     $.ajax({
-        url: targetURL,
+        url: targetURL + "/api/post",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(post_data),
@@ -47,7 +47,7 @@ function updatePostEvent(targetURL) {
 function updateHttpEvent(action, targetURL, data) {
     var today = new Date();
     var time = pad(today.getHours()) + ":" + pad(today.getMinutes()) + ":" + pad(today.getSeconds());
-    $("#js_post").html('Post');
+    $("#js_post").html('Send');
     var message;
     var statusClass;
     if (action == "success") {
@@ -61,8 +61,7 @@ function updateHttpEvent(action, targetURL, data) {
                             </p>
                         </div>
                     </div>`;
-        // message = '<span class="message-success message">[SUCCESS]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination:</b> " + targetURL + " <b>Response:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        // statusClass = "event-success";
+
     } else if (action == "received") {
         message = `<div class="card event-received text-white mb-3">
                         <div class="card-body">
@@ -74,24 +73,20 @@ function updateHttpEvent(action, targetURL, data) {
                             </p>
                         </div>
                     </div>`;
-        // message = '<span class="message-received message">[RECEIVED]</span>' + " <b> Origin:</b> " + targetURL + " <b>Message:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        // statusClass = "event-received";
+
     } else {
         message = `<div class="card bg-danger text-white mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Message Failure</h5>
-                            <p class="card-text">Destination unreachable</p>
+                            <p class="card-text">Unable to deliver message, destination host is unreachable.</p>
                             <p class="card-text">
                                 <span><b>Receiver:</b> ` + targetURL + `</span>
                                 <span class="float-right"><b>` + time + `</b></span>
                             </p>
                         </div>
                     </div>`;
-        // message = '<span class="message-failure message">[FAILURE]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination: </b> " + targetURL + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        // statusClass = "event-failure";
     }
     $("#js_events_parent").prepend(message);
-    // $("#js_events_parent").prepend('<p class="event-row ' + statusClass + '">' + message + '</p>');
 }
 
 function checkReceivedMessages() {
@@ -132,7 +127,7 @@ function makeid(length) {
 function pad(n) { return n < 10 ? '0' + n : n }
 
 function populateAPI() {
-    var apiString = window.location.protocol + "//" + window.location.host + "/api/post";
+    var apiString = window.location.protocol + "//" + window.location.host;
     $("#apiURL").html(apiString);
     $("#urlInput").val(apiString);
 }

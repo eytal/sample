@@ -3,24 +3,12 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
 .events-window {
-    height: 38em;
+    height: 37em;
     overflow-y: auto;
-}
-
-.events-bg {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 35rem;
-    padding: 15rem 0;
-    background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url("../img/bg-admin.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
 }
 
 .half-left {
@@ -33,25 +21,6 @@ body {
     width: 70%;
 }
 
-.event-row {
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    font-size: 18px;
-    margin-bottom: 0px;
-}
-
-.event-success {
-    color: white;
-    background-color: green;
-}
-
-.event-failure {
-    color: white;
-    background-color: crimson;
-}
-
 .event-received {
     color: white;
     background-color: #6A359C;
@@ -61,25 +30,6 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-}
-
-span.message-success {
-    color: orange;
-    font-weight: bold;
-}
-
-span.message-failure {
-    color: orange;
-    font-weight: bold;
-}
-
-span.message-received {
-    color: orange;
-    font-weight: bold;
-}
-
-span.float-right {
-    float: right;
 }
 
 .bold {
