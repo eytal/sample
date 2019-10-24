@@ -2,7 +2,7 @@ var events_log = {};
 
 $(document).ready(function() {
     populateAPI();
-    $("#nonce").val(makeid(12));
+    //$("#nonce").val(makeid(12));
     //Generate a nonce string to validate returned http response
     $("#js_generate_nonce").on("click", (event) => {
         event.preventDefault();
@@ -129,5 +129,5 @@ function pad(n) { return n < 10 ? '0' + n : n }
 function populateAPI() {
     var apiString = window.location.protocol + "//" + window.location.host;
     $("#apiURL").html(apiString);
-    $("#urlInput").val(apiString);
+    //$("#urlInput").val(apiString);
 }
