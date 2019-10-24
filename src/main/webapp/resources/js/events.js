@@ -51,16 +51,47 @@ function updateHttpEvent(action, targetURL, data) {
     var message;
     var statusClass;
     if (action == "success") {
-        message = '<span class="message-success message">[SUCCESS]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination:</b> " + targetURL + " <b>Response:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        statusClass = "event-success";
+        message = `<div class="card bg-success text-white mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Message Success</h5>
+                            <p class="card-text">` + data + `</p>
+                            <p class="card-text">
+                                <span><b>Receiver:</b> ` + targetURL + `</span>
+                                <span class="float-right"><b>` + time + `</b></span>
+                            </p>
+                        </div>
+                    </div>`;
+        // message = '<span class="message-success message">[SUCCESS]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination:</b> " + targetURL + " <b>Response:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
+        // statusClass = "event-success";
     } else if (action == "received") {
-        message = '<span class="message-received message">[RECEIVED]</span>' + " <b> Origin:</b> " + targetURL + " <b>Message:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        statusClass = "event-received";
+        message = `<div class="card event-received text-white mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Message Received</h5>
+                            <p class="card-text">` + data + `</p>
+                            <p class="card-text">
+                                <span><b>Sender:</b> ` + targetURL + `</span>
+                                <span class="float-right"><b>` + time + `</b></span>
+                            </p>
+                        </div>
+                    </div>`;
+        // message = '<span class="message-received message">[RECEIVED]</span>' + " <b> Origin:</b> " + targetURL + " <b>Message:</b> " + data + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
+        // statusClass = "event-received";
     } else {
-        message = '<span class="message-failure message">[FAILURE]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination: </b> " + targetURL + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
-        statusClass = "event-failure";
+        message = `<div class="card bg-danger text-white mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Message Failure</h5>
+                            <p class="card-text">Destination unreachable</p>
+                            <p class="card-text">
+                                <span><b>Receiver:</b> ` + targetURL + `</span>
+                                <span class="float-right"><b>` + time + `</b></span>
+                            </p>
+                        </div>
+                    </div>`;
+        // message = '<span class="message-failure message">[FAILURE]</span>' + " <b> Origin:</b> " + window.location.href + " <b> Destination: </b> " + targetURL + '<span class="float-right">' + " <b>[</b>" + time + "<b>]</b> </span>";
+        // statusClass = "event-failure";
     }
-    $("#js_events_parent").prepend('<p class="event-row ' + statusClass + '">' + message + '</p>');
+    $("#js_events_parent").prepend(message);
+    // $("#js_events_parent").prepend('<p class="event-row ' + statusClass + '">' + message + '</p>');
 }
 
 function checkReceivedMessages() {

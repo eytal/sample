@@ -6,8 +6,8 @@ body {
 }
 
 .events-window {
-    min-height: 25em;
-    background-color: dimgray;
+    height: 38em;
+    overflow-y: auto;
 }
 
 .events-bg {
