@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 import com.dsta.sampleapp.sample.model.Message;
-
 import com.dsta.sampleapp.sample.service.MessageServiceImpl;
+import com.dsta.sampleapp.sample.service.PostalService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,9 @@ public class ApiController {
 
     @Autowired
     MessageServiceImpl messageService;
+
+    @Autowired
+    PostalService postalService;
 
     @GetMapping("/")
     String redirectEvents(){
@@ -59,6 +63,29 @@ public class ApiController {
         messageService.save(received);
 
         return new ResponseEntity<>(received.getNonce(),HttpStatus.OK);
+    }
+    @CrossOrigin
+    @PostMapping(value="/api/send")
+    ResponseEntity<String> sendMessage(@RequestBody Message to_send) {
+
+        // Message received = new Message();
+
+        // received.setOrigin(request.getHeader("origin"));
+        // received.setDestination(request.getRequestURI());
+        // received.setNonce(nonce);
+        System.out.println(to_send.toString());
+        try {
+            HttpResponse res = postalService.post(to_send);
+            System.out.println(res.toString());
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        
+        //messageService.save(to_send);
+        //If message gets sent successfully with a response
+        return new ResponseEntity<>(to_send.getNonce(), HttpStatus.OK);
     }
 
     @GetMapping(value="/api/retrieve")
