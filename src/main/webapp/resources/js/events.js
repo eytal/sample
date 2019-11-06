@@ -29,7 +29,7 @@ function updatePostEvent(targetURL) {
     };
 
     $.ajax({
-        url: targetURL + "/api/send",
+        url: "/api/send",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(post_data),
